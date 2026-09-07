@@ -11857,13 +11857,13 @@
             }
 
             // Generar CSV con las columnas solicitadas: Cliente, Código, Fecha, Hora, Entregador, Ruta
-            let csv = 'Cliente,Código,Fecha,Hora,Entregador,Ruta\n';
+            let csv = 'Cliente,Código,Fecha,Hora,Entregador,Ruta,Prestadas,Devueltas\n';
             registros.forEach(r => {
                 const fecha = new Date(r.fecha);
                 const fechaFormato = fecha.toLocaleDateString('es-ES');
                 const horaFormato = fecha.toLocaleTimeString('es-ES');
                 const cliente = r.cliente.replace(/,/g, ';'); // evitar comas en nombre
-                csv += `${cliente},${r.codigo_cliente},${fechaFormato},${horaFormato},${r.colaborador},${r.ruta}\n`;
+                csv += `${cliente},${r.codigo_cliente},${fechaFormato},${horaFormato},${r.colaborador},${r.ruta},${r.prestadas},${r.devueltas}\n`;
             });
 
             const blob = new Blob([csv], { type: 'text/csv' });
